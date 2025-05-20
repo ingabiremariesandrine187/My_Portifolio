@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marie Sandrine INGABIRE - Personal Profile</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e8e8ec;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: rgb(11, 11, 40);
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    main {
+      flex: 1;
+      margin-top: 100px; /* space for header */
+      padding: 1rem;
+    }
+
+    .profile-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .image-container {
+      flex: 1 1 250px;
+      text-align: center;
+    }
+
+    .bio-container {
+      flex: 2 1 400px;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .bio-container .bio {
+      text-align: left;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      font-family: 'Georgia', serif;
+      color: #444;
+    }
+
+    .profile-image {
+      display: block;
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem auto;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-show-name {
+      background-color: rgb(11, 11, 40);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 1rem auto;
+    }
+
+    #displayName {
+      text-align: center;
+      font-size: 1.2rem;
+      color: rgb(11, 11, 40);
+      margin-bottom: 2rem;
+    }
+
+    .hobbies {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .hobbies h2 {
+      color: rgb(11, 11, 40);
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .hobbies-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hobby-card {
+      background-color: #f0f2fa;
+      padding: 1.5rem 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      border-left: 6px solid rgb(11, 11, 40);
+      text-align: center;
+      font-size: 1.1rem;
+      flex: 1 1 250px;
+      max-width: 300px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hobby-card:hover {
+      transform: translateY(-6px);
+      background-color: #e9ecf7;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-contact {
+      display: block;
+      background-color: rgb(11, 11, 40);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 1rem auto 2rem auto;
+      width: fit-content;
+    }
+
+    .btn-contact:hover {
+      background-color: rgb(16, 15, 15);
+    }
+
+    .contact-form {
+      margin-bottom: 2rem;
+    }
+
+    .contact-form h2 {
+      text-align: center;
+      color: rgb(11, 11, 40);
+      margin-bottom: 1rem;
+    }
+
+    form {
+      max-width: 450px;
+      margin: 0 auto 1rem auto;
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    form input[type="text"],
+    form input[type="email"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    form button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: rgb(11, 11, 40);
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: rgb(16, 15, 15);
+    }
+
+    #successMessage {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      display: none;
+      margin-bottom: 2rem;
+    }
+
+    .footer {
+      background-color: rgb(11, 11, 40);
+      color: #fff;
+      padding: 2rem 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      flex: 1 1 200px;
+      box-sizing: border-box;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p,
+    .footer-section ul {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .footer-section ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-section ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-section.social {
+      flex: 1 1 100%;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .footer-section.social a {
+      color: #ffffff;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section.social a:hover {
+      color: #00aced;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      width: 100%;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: rgb(225, 223, 223);
+    }
+    .links{
+      display: flex;
+    gap: 60px;
+    justify-content: flex-start; /* Align items to the left */
+    text-align: left; 
+    color: white;
+    font-size: medium;
+    margin-top: 1px;
+
+    }
+    .links a {
+    color: white;
+    text-decoration: none;
+  }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-section {
+        flex: 1 1 100%;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-section.social {
+        margin-top: 1rem;
+      }
+
+      header {
+        font-size: 1.5rem;
+        padding: 1rem;
+      }
+
+      .hobbies-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+     <div class="links">
+      <a href="#top">Home</a></li>
+      <a href="#top">Contact me</a></li>
+      <a href="#top">Hobbies</a></li>
+      <a href="#top">Skills</a></li>
+     </div>
+    
+  </header>
+  
+
+  <main>
+    <div class="profile-section">
+      <div class="image-container">
+        <img src="C:\Users\USER\Pictures\My picccccc.jpg" alt="Marie Sandrine INGABIRE" class="profile-image" />
+      </div>
+      <div class="bio-container">
+        <p class="bio">
+          Hello! I am <strong>Marie Sandrine INGABIRE</strong>, A Software Developer — 
+          a passionate and innovative individual who thrives on exploring new opportunities, tackling complex problems, 
+          and constantly learning and evolving. With a strong foundation in coding, system design, and user-focused solutions, 
+          I am driven by a desire to build efficient, scalable, and impactful software applications.
+           Welcome to my personal profile page, where creativity meets technology.
+        </p>
+        <button class="btn-show-name" onclick="showName()">Click Me</button>
+        <p id="displayName"></p>
+      </div>
+    </div>
+
+    <section class="hobbies">
+      <h2>My Hobbies</h2>
+      <div class="hobbies-grid">
+        <div class="hobby-card">Reading inspiring books</div>
+        <div class="hobby-card">Dancing</div>
+        <div class="hobby-card">Photography and visual storytelling</div>
+      </div>
+    </section>
+
+    <button class="btn-contact" onclick="document.querySelector('.contact-form').scrollIntoView({behavior: 'smooth'})">Contact Me</button>
+
+    <section class="contact-form">
+      <h2>Contact Me</h2>
+      <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required minlength="3" />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section about">
+        <h3>About Me</h3>
+        <p>I’m Marie Sandrine INGABIRE, a software developer passionate about solving real-world problems and sharing ideas with the world.</p>
+      </div>
+      <div class="footer-section links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#contactForm">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section contact">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-envelope"></i> ingabiremariesandrine187@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +250 789 123 456</p>
+        <p><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</p>
+      </div>
+      <div class="footer-section social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 Marie Sandrine INGABIRE. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (name.length < 3) {
+        alert("Name must be at least 3 characters long.");
+        return;
+      }
+
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      alert("Form has been submitted successfully!");
+      document.getElementById('successMessage').style.display = 'block';
+      document.getElementById('contactForm').reset();
+    });
+
+    function showName() {
+      alert("Hello, Sando!");
+    }
+  </script>
+</body>
+</html>
